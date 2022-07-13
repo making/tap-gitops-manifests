@@ -20,7 +20,7 @@ spec:
         carto.run/workload-name: hello
     spec:
       containers:
-      - image: ghcr.io/making/hello-demo@sha256:c9ed1990af739a56230eb8b8b5e45e50ec22901da6884daac969604e29791ace
+      - image: ghcr.io/making/hello-demo@sha256:592f3cdade4da368b73dc18bcf6729dd220aae7a5bf08a2910795e8711f71a37
         name: workload
         resources: {}
         securityContext:
