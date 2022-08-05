@@ -11,17 +11,30 @@ spec:
   template:
     metadata:
       annotations:
-        conventions.apps.tanzu.vmware.com/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        autoscaling.knative.dev/minScale: "1"
+        boot.spring.io/version: 2.7.2
+        conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-graceful-shutdown
+          spring-boot-convention/spring-boot-web
+          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: hello
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: hello
+        conventions.apps.tanzu.vmware.com/framework: spring-boot
     spec:
       containers:
-      - image: ghcr.io/making/hello-demo@sha256:f55cffc72cb949fdbea0fb9087282e3051c2c48d0e91a08674da6dd651b52ed6
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: tap12094.azurecr.io/supply-chain/hello-demo@sha256:448b1601d6f60d0727165c5f197f8b84281f2e73ff1584bd221a1f752288e264
         name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
         resources: {}
         securityContext:
           runAsUser: 1000
