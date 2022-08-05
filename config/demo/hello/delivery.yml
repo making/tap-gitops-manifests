@@ -11,17 +11,58 @@ spec:
   template:
     metadata:
       annotations:
-        conventions.apps.tanzu.vmware.com/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        autoscaling.knative.dev/minScale: "1"
+        boot.spring.io/version: 2.7.2
+        conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          inspect-image-convention/buildpacks
+          inspect-image-convention/base-image
+          inspect-image-convention/run-image
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-graceful-shutdown
+          spring-boot-convention/spring-boot-web
+          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
+        inspect-image.buildpacks.io/base-image: |-
+          reference: tap12094.azurecr.io/build-service@sha256:df540c820fb2438ab90e5a71c62f6941275351b7b559697f77ff4993b2beb02a
+          top_layer: sha256:0fbfc7861cb593acbde0769c43ac76f4d90027a3329c91964b0c3d64b716f804
+        inspect-image.buildpacks.io/buildpacks: |-
+          - id: paketo-buildpacks/ca-certificates
+            version: 3.2.3
+          - id: paketo-buildpacks/bellsoft-liberica
+            version: 9.3.6
+          - id: paketo-buildpacks/syft
+            version: 1.10.1
+          - id: paketo-buildpacks/maven
+            version: 6.5.4
+          - id: paketo-buildpacks/executable-jar
+            version: 6.2.4
+          - id: paketo-buildpacks/apache-tomcat
+            version: 7.3.6
+          - id: paketo-buildpacks/liberty
+            version: 1.1.1
+          - id: paketo-buildpacks/dist-zip
+            version: 5.2.4
+          - id: paketo-buildpacks/spring-boot
+            version: 5.11.0
+          - id: paketo-buildpacks/image-labels
+            version: 4.1.2
+        inspect-image.buildpacks.io/run-image: tap12094.azurecr.io/build-service@sha256:df540c820fb2438ab90e5a71c62f6941275351b7b559697f77ff4993b2beb02a
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: hello
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: hello
+        conventions.apps.tanzu.vmware.com/framework: spring-boot
     spec:
       containers:
-      - image: ghcr.io/making/hello-demo@sha256:f55cffc72cb949fdbea0fb9087282e3051c2c48d0e91a08674da6dd651b52ed6
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: tap12094.azurecr.io/supply-chain/hello-demo@sha256:448b1601d6f60d0727165c5f197f8b84281f2e73ff1584bd221a1f752288e264
         name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
         resources: {}
         securityContext:
           runAsUser: 1000
