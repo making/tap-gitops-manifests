@@ -57,7 +57,7 @@ spec:
           value: -XX:ReservedCodeCacheSize=32M -Xss512k -Dfile.encoding="UTF-8" -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s" -Duser.country="JP" -Duser.language="ja" -Duser.timezone="Asia/Tokyo"
         - name: BPL_JVM_THREAD_COUNT
           value: "28"
-        image: ghcr.io/making/supply-chain/vehicle-api-demo@sha256:2fdd041da2e14c51091a0c343f816af6b571a5f2a87ac6d4ee6b1c07a2747e5a
+        image: ghcr.io/making/supply-chain/vehicle-api-demo@sha256:c855e204e8a0f347cf917fe1e50da373932c239a08bafe298f1d729e270c177d
         livenessProbe:
           httpGet:
             path: /livez
