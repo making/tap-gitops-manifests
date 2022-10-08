@@ -13,7 +13,7 @@ metadata:
 spec:
   type: openapi
   description: A set of API endpoints to manage the resources within the vehicle api.
-  system: demo
+  system: ""
   owner: demo
   location:
     path: /v3/api-docs
