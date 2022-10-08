@@ -48,7 +48,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: ghcr.io/making/supply-chain/vehicle-api-demo@sha256:5a43ca4eb799e095ed67b3d2324f3cf9d2c379573e254a8320b84d39a594a092
+        image: ghcr.io/making/supply-chain/vehicle-api-demo@sha256:5919649e16486db37e0918c7d804acbf4a908eed111fc9e24ad5b6c1c1621efd
         livenessProbe:
           httpGet:
             path: /livez
