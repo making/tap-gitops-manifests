@@ -23,7 +23,7 @@ spec:
         carto.run/workload-name: hello-nodejs
     spec:
       containers:
-      - image: ghcr.io/making/workloads/hello-nodejs-demo@sha256:80656525037647217a921097aff0a6b0839b4e0f3ed396ea303f9f5d3ec6a901
+      - image: ghcr.io/making/workloads/hello-nodejs-demo@sha256:fd215013bcb25307c5cf86ffdd3c92a441cd2c87077160eff3dab5000ae829f8
         name: workload
         resources: {}
         securityContext:
