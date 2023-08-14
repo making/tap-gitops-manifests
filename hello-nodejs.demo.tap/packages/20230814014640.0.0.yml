@@ -1,0 +1,55 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: hello-nodejs.demo.tap.20230814014640.0.0+build.fde413c
+spec:
+  refName: hello-nodejs.demo.tap
+  version: 20230814014640.0.0+build.fde413c
+  releaseNotes: |
+    Release v20230814014640.0.0+build.fde413c of package hello-nodejs.demo.tap
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: ghcr.io/making/workloads/hello-nodejs-demo-bundle@sha256:8971d6979d6823edbe502162ddb9ab6dde665ac807857dbe4ea89857ce2db28c
+      template:
+      - ytt:
+          paths:
+          - .
+      - kbld:
+          paths:
+          - .imgpkg/images.yml
+          - '-'
+      deploy:
+      - kapp: {}
+  valuesSchema:
+    openAPIv3:
+      type: object
+      additionalProperties: false
+      properties:
+        workload_name:
+          title: Workload name
+          type: string
+          description: Required. Name of the workload, used by K8s Ingress HTTP rules.
+          default: ""
+        replicas:
+          title: Replicas
+          type: integer
+          description: Number of replicas.
+          default: 1
+        port:
+          title: Port
+          type: integer
+          description: Port number for the backend associated with K8s Ingress.
+          default: 8080
+        hostname:
+          title: Hostname
+          type: string
+          description: If set, K8s Ingress will be created with HTTP rules for hostname.
+          default: ""
+        cluster_issuer:
+          title: Cluster Issuer
+          type: string
+          description: CertManager Issuer to use to generate certificate for K8s Ingress.
+          default: tap-ingress-selfsigned
+
