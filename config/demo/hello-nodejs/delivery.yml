@@ -28,7 +28,7 @@ spec:
         carto.run/workload-name: hello-nodejs
     spec:
       containers:
-      - image: tap27218.azurecr.io/tanzu-application-platform/workloads/hello-nodejs-demo@sha256:5ef98df3f76d8bf7503194afe44924c68e339ece3c45b867805d4769fca212fa
+      - image: tap27218.azurecr.io/tanzu-application-platform/workloads/hello-nodejs-demo@sha256:74e80425aeb7851294edd9132f8ae46cd8a8a9b1406acc2064c1416fc0488451
         name: workload
         resources: {}
         securityContext:
