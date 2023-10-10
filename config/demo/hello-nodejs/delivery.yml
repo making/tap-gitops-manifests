@@ -18,9 +18,33 @@ spec:
         autoscaling.knative.dev/minScale: "1"
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
+          inspect-image-convention/buildpacks
+          inspect-image-convention/base-image
+          inspect-image-convention/run-image
+          inspect-image-convention/source
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
+        inspect-image.buildpacks.io/base-image: |-
+          reference: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340
+          top_layer: sha256:9b1e7cb9491474f366592d6d8c32aabbd34d8f99c2984db68e115d160ef64e1d
+        inspect-image.buildpacks.io/buildpacks: |-
+          - id: paketo-buildpacks/ca-certificates
+            version: 3.6.1
+          - id: tanzu-buildpacks/node-engine
+            version: 1.5.2
+          - id: tanzu-buildpacks/npm-install
+            version: 1.1.2
+          - id: tanzu-buildpacks/node-module-bom
+            version: 0.3.4
+          - id: tanzu-buildpacks/node-start
+            version: 1.0.9
+          - id: tanzu-buildpacks/npm-start
+            version: 1.0.9
+          - id: paketo-buildpacks/image-labels
+            version: 4.5.0
+        inspect-image.buildpacks.io/run-image: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340
+        inspect-image.opencontainers.org/source: master@sha1:76f84e92aa878f170b5b5010bf4cd7cabfbf7e53
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: hello-nodejs
