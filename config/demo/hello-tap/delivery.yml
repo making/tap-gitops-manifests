@@ -44,7 +44,7 @@ spec:
           - id: paketo-buildpacks/image-labels
             version: 4.5.0
         inspect-image.buildpacks.io/run-image: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340
-        inspect-image.opencontainers.org/source: main@sha1:06aff0ee74df1263e98ef080d24d5023fdc84355
+        inspect-image.opencontainers.org/source: main@sha1:a7ab0f8c08ced407a86e2d006f5130ed6662ebfc
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: hello-tap
@@ -52,7 +52,7 @@ spec:
         carto.run/workload-name: hello-tap
     spec:
       containers:
-      - image: tap27218.azurecr.io/tanzu-application-platform/workloads/hello-tap-demo@sha256:8db14fcb49bace5e67b50c9bbecb128465f8dce08ea4b3fbce188565e3eb7445
+      - image: tap27218.azurecr.io/tanzu-application-platform/workloads/hello-tap-demo@sha256:9ceb3beddcf8f134082bedb5af6ab83f1fc8f2440accea616a9700f0ac1f3784
         name: workload
         resources: {}
         securityContext:
