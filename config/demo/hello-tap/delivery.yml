@@ -27,24 +27,24 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         inspect-image.buildpacks.io/base-image: |-
-          reference: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340
-          top_layer: sha256:9b1e7cb9491474f366592d6d8c32aabbd34d8f99c2984db68e115d160ef64e1d
+          reference: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:315decdc5f06c11199c718f9432e19d6ff30abf5ad53e988d820b62cb081c0a2
+          top_layer: sha256:951f080c9d78b977f4dfa0a47c82a1a0d48f992a18e01738feb6268c6f34324b
         inspect-image.buildpacks.io/buildpacks: |-
           - id: paketo-buildpacks/ca-certificates
-            version: 3.6.1
+            version: 3.6.3
           - id: tanzu-buildpacks/node-engine
-            version: 1.5.2
+            version: 2.0.0
           - id: tanzu-buildpacks/npm-install
-            version: 1.1.2
+            version: 1.2.1
           - id: tanzu-buildpacks/node-module-bom
             version: 0.3.4
           - id: tanzu-buildpacks/node-start
-            version: 1.0.9
+            version: 1.1.1
           - id: tanzu-buildpacks/npm-start
-            version: 1.0.9
+            version: 1.0.13
           - id: paketo-buildpacks/image-labels
-            version: 4.5.0
-        inspect-image.buildpacks.io/run-image: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:72d30e0638c6e01e23e4f36a33e061dde35cc590c69ae6cfca046d02380bc340
+            version: 4.5.2
+        inspect-image.buildpacks.io/run-image: tap27218.azurecr.io/tanzu-application-platform/full-deps-package-repo@sha256:315decdc5f06c11199c718f9432e19d6ff30abf5ad53e988d820b62cb081c0a2
         inspect-image.opencontainers.org/source: main@sha1:a7ab0f8c08ced407a86e2d006f5130ed6662ebfc
       labels:
         app.kubernetes.io/component: run
@@ -54,7 +54,7 @@ spec:
         carto.run/workload-name: hello-tap
     spec:
       containers:
-      - image: tap27218.azurecr.io/tanzu-application-platform/workloads/hello-tap-demo@sha256:9ceb3beddcf8f134082bedb5af6ab83f1fc8f2440accea616a9700f0ac1f3784
+      - image: tap27218.azurecr.io/tanzu-application-platform/workloads/hello-tap-demo@sha256:87c2813f1b938bae0ddb612100f3c60d29ac66f27af2a1107e8d054feb626ad1
         name: workload
         resources: {}
         securityContext:
